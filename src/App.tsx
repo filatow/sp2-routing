@@ -3,8 +3,8 @@ import styles from './components/Site.module.css'
 import { PageOne } from './components/pages/PageOne'
 import { PageTwo } from './components/pages/PageTwo'
 import { PageThree } from './components/pages/PageThree'
-import {Navigate, Route, Routes} from 'react-router-dom'
-import {Error404} from './components/pages/Error404';
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
+import { Error404 } from './components/pages/Error404'
 
 function App() {
 	return (
@@ -13,17 +13,45 @@ function App() {
 				<h1>HEADER</h1>
 			</div>
 			<div className={styles.body}>
-				<div className={styles.nav}>Здесь будет навигация</div>
+				<div className={styles.nav}>
+					<div>
+						<NavLink to={'/page/page1'}> Page 1</NavLink>
+					</div>
+					<div>
+						<NavLink to={'/page/page2'}> Page 2</NavLink>
+					</div>
+					<div>
+						<NavLink to={'/page/page3'}> Page 3</NavLink>
+					</div>
+				</div>
 				<div className={styles.content}>
 					<Routes>
-						<Route path={'/'} element={<Navigate to={'/adidas'}/>}></Route>
+						<Route
+							path={'/'}
+							element={<Navigate to={'/page/page1'} />}
+						></Route>
 
-						<Route path={'/adidas'} element={<PageOne />}></Route>
-						<Route path={'/puma'} element={<PageTwo />}></Route>
-						<Route path={'/abibas'} element={<PageThree />}></Route>
+						<Route
+							path={'/page/page1'}
+							element={<PageOne />}
+						></Route>
+						<Route
+							path={'/page/page2'}
+							element={<PageTwo />}
+						></Route>
+						<Route
+							path={'/page/page3'}
+							element={<PageThree />}
+						></Route>
 
-						<Route path={'/error404'} element={<Error404 />}></Route>
-						<Route path={'/*'} element={<Navigate to={'/error404'}/>}></Route>
+						<Route
+							path={'/page/error'}
+							element={<Error404 />}
+						></Route>
+						<Route
+							path={'/*'}
+							element={<Navigate to={'/page/error'} />}
+						></Route>
 					</Routes>
 				</div>
 			</div>
