@@ -1,77 +1,57 @@
 import React from 'react'
-import styles from './components/Site.module.css'
 import { PageOne } from './components/pages/PageOne'
 import { PageTwo } from './components/pages/PageTwo'
 import { PageThree } from './components/pages/PageThree'
-import {NavLink, Navigate, Route, Routes} from 'react-router-dom'
+import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import { Error404 } from './components/pages/Error404'
+import { S } from './components/pages/_styles'
+
+const PATH = {
+	PAGE1: '/page/page1',
+	PAGE2: '/page/page2',
+	PAGE3: '/page/page3',
+	ER404: '/page/error',
+} as const
 
 function App() {
 	return (
 		<div>
-			<div className={styles.header}>
+			<S.Header>
 				<h1>HEADER</h1>
-			</div>
-			<div className={styles.body}>
-				<nav className={styles.nav}>
-					<div>
-						<NavLink
-							to={'/page/page1'}
-							className={({ isActive}) =>
-								isActive ? styles.active : styles.navLink
-							}
-						> Page 1</NavLink>
-					</div>
-					<div>
-						<NavLink
-							to={'/page/page2'}
-							className={({ isActive}) =>
-								isActive ? styles.active : styles.navLink
-							}
-						> Page 2</NavLink>
-					</div>
-					<div>
-						<NavLink
-							to={'/page/page3'}
-							className={({ isActive}) =>
-								isActive ? styles.active : styles.navLink
-							}
-						> Page 3</NavLink>
-						{/*<Link to={'/page/page3'}> Page 3</Link>*/}
-					</div>
-				</nav>
-				<div className={styles.content}>
+			</S.Header>
+			<S.Body>
+				<S.Nav>
+					<S.NavWrapper>
+						<NavLink to={PATH.PAGE1}> Page 1</NavLink>
+					</S.NavWrapper>
+					<S.NavWrapper>
+						<NavLink to={PATH.PAGE2}> Page 2</NavLink>
+					</S.NavWrapper>
+					<S.NavWrapper>
+						<NavLink to={PATH.PAGE3}> Page 3</NavLink>
+					</S.NavWrapper>
+				</S.Nav>
+				<S.Content>
 					<Routes>
 						<Route
 							path={'/'}
-							element={<Navigate to={'/page/page1'} />}
+							element={<Navigate to={PATH.PAGE1} />}
 						></Route>
 
+						<Route path={PATH.PAGE1} element={<PageOne />}></Route>
+						<Route path={PATH.PAGE2} element={<PageTwo />}></Route>
 						<Route
-							path={'/page/page1'}
-							element={<PageOne />}
-						></Route>
-						<Route
-							path={'/page/page2'}
-							element={<PageTwo />}
-						></Route>
-						<Route
-							path={'/page/page3'}
+							path={PATH.PAGE3}
 							element={<PageThree />}
 						></Route>
 
-						<Route
-							path={'/page/error'}
-							element={<Error404 />}
-						></Route>
-						<Route
-							path={'/*'}
-							element={<Navigate to={'/page/error'} />}
-						></Route>
+						<Route path={'/*'} element={<Error404 />}></Route>
+						{/*<Route path={PATH.ER404} element={<Error404 />}></Route>*/}
+						{/*<Route path={'/*'} element={<Navigate to={PATH.ER404} />}></Route>*/}
 					</Routes>
-				</div>
-			</div>
-			<div className={styles.footer}>abibas 2023</div>
+				</S.Content>
+			</S.Body>
+			<S.Footer>abibas 2023</S.Footer>
 		</div>
 	)
 }
