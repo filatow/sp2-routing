@@ -51,12 +51,12 @@ const NavWrapper = styled.div`
 	}
 
 	& > a.active {
-		text-decoration: none;
+		//text-decoration: none;
 		color: #28cfdf;
 	}
 
 	& > a.active:hover {
-		cursor: default;
+		//cursor: default;
 	}
 `
 

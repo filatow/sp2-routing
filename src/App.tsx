@@ -1,19 +1,20 @@
 import React from 'react'
-import { PageOne } from './components/pages/PageOne'
-import { PageTwo } from './components/pages/PageTwo'
-import { PageThree } from './components/pages/PageThree'
+import { Adidas } from './components/pages/Adidas'
+import { Puma } from './components/pages/Puma'
+import { Abibas } from './components/pages/Abibas'
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import { Error404 } from './components/pages/Error404'
 import { S } from './components/pages/_styles'
+import {Model} from './components/pages/Model';
 
 const PATH = {
-	PAGE1: '/page1',
-	PAGE2: '/page2',
-	PAGE3: '/page3',
+	PAGE1: '/adidas',
+	PAGE2: '/puma',
+	PAGE3: '/abibas',
 	ER404: '/page/error',
 } as const
 
-function App() {
+export  default  function App() {
 	return (
 		<div>
 			<S.Header>
@@ -22,13 +23,13 @@ function App() {
 			<S.Body>
 				<S.Nav>
 					<S.NavWrapper>
-						<NavLink to={PATH.PAGE1}> Page 1</NavLink>
+						<NavLink to={PATH.PAGE1}> Adidas</NavLink>
 					</S.NavWrapper>
 					<S.NavWrapper>
-						<NavLink to={PATH.PAGE2}> Page 2</NavLink>
+						<NavLink to={PATH.PAGE2}> Puma</NavLink>
 					</S.NavWrapper>
 					<S.NavWrapper>
-						<NavLink to={PATH.PAGE3}> Page 3</NavLink>
+						<NavLink to={PATH.PAGE3}> Abibas</NavLink>
 					</S.NavWrapper>
 				</S.Nav>
 				<S.Content>
@@ -38,11 +39,15 @@ function App() {
 							element={<Navigate to={PATH.PAGE1} />}
 						></Route>
 
-						<Route path={PATH.PAGE1} element={<PageOne />}></Route>
-						<Route path={PATH.PAGE2} element={<PageTwo />}></Route>
+						<Route path={PATH.PAGE1} element={<Adidas />}></Route>
+						<Route path={`${PATH.PAGE1}/:id`} element={<Model />}></Route>
+
+						<Route path={PATH.PAGE2} element={<Puma />}></Route>
+						<Route path={`${PATH.PAGE2}/:id`} element={<Model />}></Route>
+
 						<Route
 							path={PATH.PAGE3}
-							element={<PageThree />}
+							element={<Abibas />}
 						></Route>
 
 						<Route path={'/*'} element={<Error404 />}></Route>
@@ -51,9 +56,7 @@ function App() {
 					</Routes>
 				</S.Content>
 			</S.Body>
-			<S.Footer>abibas 2023</S.Footer>
+			<S.Footer>abibas 2024</S.Footer>
 		</div>
 	)
 }
-
-export default App
