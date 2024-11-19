@@ -1,7 +1,7 @@
 import React from 'react'
 import { adidasArr } from './Adidas'
 import { pumaArr } from './Puma'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Producer, Product } from './_types'
 
@@ -11,19 +11,20 @@ const data: Record<Producer, Product[]> = {
 }
 
 export const Model = () => {
-	const { id } = useParams()
-	const location = useLocation()
-	const producer = location.pathname.split('/')[1] as Producer
-	const product = data[producer].find((p) => p.id === Number(id))
+	const { producer, id } = useParams<{ producer: Producer; id: string }>()
+	const product =
+		producer ? data[producer].find((p) => p.id === Number(id)) : null
 
 	if (!product) return <h2>Такой модели не существует</h2>
 
+	const { model, collection, price, picture } = product
+
 	return (
 		<StyledModel>
-			<h2>Модель: {product.model}</h2>
-			<p>Коллекция: {product.collection}</p>
-			<p>Цена: {product.price}</p>
-			<Image src={product.picture} alt={product.model} />
+			<h2>Модель: {model}</h2>
+			<p>Коллекция: {collection}</p>
+			<p>Цена: {price}</p>
+			<Image src={picture} alt={model} />
 		</StyledModel>
 	)
 }

@@ -40,10 +40,10 @@ export  default  function App() {
 						></Route>
 
 						<Route path={PATH.PAGE1} element={<Adidas />}></Route>
-						<Route path={`${PATH.PAGE1}/:id`} element={<Model />}></Route>
-
+						{/*<Route path={`${PATH.PAGE1}/:id`} element={<Model />}></Route>*/}
 						<Route path={PATH.PAGE2} element={<Puma />}></Route>
-						<Route path={`${PATH.PAGE2}/:id`} element={<Model />}></Route>
+						{/*<Route path={`${PATH.PAGE2}/:id`} element={<Model />}></Route>*/}
+						<Route path={`/:producer/:id`} element={<Model />}></Route>
 
 						<Route
 							path={PATH.PAGE3}
