@@ -12,7 +12,7 @@ const ProtectedRoute = ({
 	children,
 }: ProtectedRouteProps) => {
 	return <>
-		{hasAccess ? children : <Navigate to={PATH.ER404} />}
+		{hasAccess ? children : <Navigate to={PATH.LOGIN} />}
 	</>
 }
 
