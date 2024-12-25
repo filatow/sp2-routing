@@ -16,6 +16,7 @@ import ProtectedPage from '../components/pages/ProtectedPage'
 import Login from '../components/pages/Login'
 
 export const PATH = {
+	ROOT: '/',
 	LOGIN: '/login',
 	ADIDAS: '/adidas',
 	PUMA: '/puma',
@@ -38,6 +39,10 @@ const publicRoutes: RouteObject[] = [
 	{
 		path: PATH.LOGIN,
 		element: <Login />,
+	},
+	{
+		path: PATH.ROOT,
+		element: <Navigate to={PATH.ADIDAS}/>,
 	},
 	{
 		path: PATH.ADIDAS,
@@ -74,8 +79,8 @@ const privateRoutes: RouteObject[] = [
 
 export const router = createBrowserRouter([
 	{
-		path: '/',
-		element: <App />,
+		path: PATH.ROOT,
+		element: <App/>,
 		errorElement: <Navigate to={PATH.ER404} />,
 		children: [
 			...publicRoutes,
