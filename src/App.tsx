@@ -23,6 +23,9 @@ export default function App() {
           <S.NavWrapper>
             <NavLink to={PATH.PRICES}> Prices</NavLink>
           </S.NavWrapper>
+          <S.NavWrapper>
+            <NavLink to={PATH.PROTECTED_PAGE}> ProtectedPage</NavLink>
+          </S.NavWrapper>
         </S.Nav>
         <S.Content>
           <Outlet/>
